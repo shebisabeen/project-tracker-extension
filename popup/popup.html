@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Tracker</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       LOGIN VIEW
+  ════════════════════════════════════════════ -->
+  <div id="view-login" class="view hidden">
+    <div class="brand">
+      <div class="brand-icon">⏱</div>
+      <h1 class="brand-name">Project Tracker</h1>
+      <p class="brand-sub">Log in to track your projects</p>
+    </div>
+
+    <form id="form-login" novalidate>
+      <div class="field">
+        <label for="input-email">Email</label>
+        <input
+          id="input-email"
+          type="email"
+          placeholder="you@example.com"
+          autocomplete="email"
+          required
+        />
+      </div>
+
+      <div class="field">
+        <label for="input-password">Password</label>
+        <input
+          id="input-password"
+          type="password"
+          placeholder="••••••••"
+          autocomplete="current-password"
+          required
+        />
+      </div>
+
+      <div id="login-error" class="error-msg hidden"></div>
+
+      <button id="btn-login" type="submit" class="btn btn-primary btn-full">
+        <span class="btn-text">Log In</span>
+        <span class="btn-spinner hidden">⟳</span>
+      </button>
+    </form>
+
+    <p class="register-link">
+      Don't have an account?
+      <a href="https://tracker.sabeencs.com/register" target="_blank" rel="noopener noreferrer">Register</a>
+    </p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       MAIN VIEW
+  ════════════════════════════════════════════ -->
+  <div id="view-main" class="view hidden">
+
+    <!-- Header -->
+    <header class="app-header">
+      <div class="user-info">
+        <span class="user-avatar" id="user-avatar">👤</span>
+        <span class="user-name" id="user-name">—</span>
+      </div>
+      <button id="btn-logout" class="btn btn-ghost btn-sm" title="Log out">
+        Sign out
+      </button>
+    </header>
+
+    <!-- Global error banner -->
+    <div id="main-error" class="error-banner hidden"></div>
+
+    <!-- Success toast -->
+    <div id="toast-success" class="toast hidden">
+      ✓ Time logged successfully!
+    </div>
+
+    <!-- Project selector -->
+    <div class="field" id="field-project">
+      <label for="select-project">Project</label>
+      <select id="select-project">
+        <option value="">— Loading projects… —</option>
+      </select>
+    </div>
+
+    <!-- Timer display (visible during tracking) -->
+    <div id="timer-display" class="timer hidden">
+      <span class="timer-label">Elapsed</span>
+      <span id="timer-value" class="timer-value">00:00:00</span>
+    </div>
+
+    <!-- Duration display (visible in stopped state) -->
+    <div id="duration-display" class="duration hidden">
+      <span class="duration-label">Duration</span>
+      <span id="duration-value" class="duration-value">00:00:00</span>
+    </div>
+
+    <!-- Description -->
+    <div class="field">
+      <label for="input-description">Description</label>
+      <textarea
+        id="input-description"
+        rows="3"
+        placeholder="What did you work on?"
+      ></textarea>
+    </div>
+
+    <!-- Action buttons -->
+    <div class="actions">
+      <button id="btn-start"   class="btn btn-primary btn-full hidden">▶ Start</button>
+      <button id="btn-stop"    class="btn btn-danger  btn-full hidden">■ Stop</button>
+      <button id="btn-submit"  class="btn btn-success btn-full hidden">
+        <span class="btn-text">✓ Submit</span>
+        <span class="btn-spinner hidden">⟳</span>
+      </button>
+      <button id="btn-discard" class="btn btn-ghost   btn-full hidden">✕ Discard</button>
+    </div>
+
+  </div>
+
+  <script src="popup.js" type="module"></script>
+</body>
+</html>
