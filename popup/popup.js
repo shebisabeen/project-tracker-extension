@@ -57,6 +57,13 @@ function storageRemove(keys) {
   return new Promise(resolve => chrome.storage.local.remove(keys, resolve));
 }
 
+/** Format a Date as a local ISO string (no UTC conversion): "YYYY-MM-DDTHH:MM:SS" */
+function toLocalISOString(date = new Date()) {
+  const pad = n => String(n).padStart(2, '0');
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}` +
+         `T${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
+}
+
 /** Format elapsed milliseconds as HH:MM:SS */
 function formatElapsed(ms) {
   const totalSec = Math.floor(ms / 1000);
@@ -349,7 +356,7 @@ btnStart.addEventListener('click', async () => {
     return;
   }
 
-  const startTime = new Date().toISOString();
+  const startTime = toLocalISOString();
 
   await storageSet({
     session_project_id: Number(projectId),
@@ -371,7 +378,7 @@ btnStart.addEventListener('click', async () => {
 btnStop.addEventListener('click', async () => {
   stopTimer();
 
-  const endTime = new Date().toISOString();
+  const endTime = toLocalISOString();
   const data    = await storageGet(['session_start_time']);
 
   await storageSet({
