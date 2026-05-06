@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Project Time Tracker",
+  "name": "Project Tracker",
   "version": "1.0.0",
   "description": "Track time against your projects directly from Chrome.",
   "permissions": [

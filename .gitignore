@@ -1,1 +1,11 @@
 *.md
+
+# Build output
+dist/
+
+# Extension private key — keep this safe, never commit it!
+key.pem
+
+# Node
+node_modules/
+package-lock.json
